@@ -1,0 +1,14 @@
+.card-body h2 {
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  
+  .form-check-input:checked + .form-check-label {
+    font-weight: bold;
+    color: #007bff; /* Color azul para elementos seleccionados */
+  }
+  
+  .form-check-label:hover {
+    cursor: pointer;
+    background-color: #f0f0f0; /* Ligero sombreado al pasar el mouse */
+  }

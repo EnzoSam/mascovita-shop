@@ -1,0 +1,19 @@
+<div class="card">
+    <div class="card-body">
+      <h2>Filtrar por:</h2>
+      <div class="mb-3">
+        <h3>Categoría</h3>
+        <div class="form-check" *ngFor="let category of categories">
+          <input class="form-check-input" type="checkbox" [value]="category" (change)="categoryChange(category, $event)">
+          <label class="form-check-label">{{ category }}</label>
+        </div>
+      </div>
+      <div class="mb-3">
+        <h3>Precio</h3>
+        <div class="form-check" *ngFor="let priceRange of priceRanges">
+          <input class="form-check-input" type="radio" name="precio" [value]="priceRange" (change)="priceRangeChange(priceRange)">
+          <label class="form-check-label">{{ priceRange }}</label>
+        </div>
+      </div>
+    </div>
+  </div>

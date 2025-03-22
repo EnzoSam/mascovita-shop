@@ -1,0 +1,17 @@
+.card {
+    transition: transform 0.3s ease-in-out; /* Transición suave para el efecto hover */
+  }
+  
+  .card:hover {
+    transform: translateY(-5px); /* Eleva ligeramente la tarjeta al pasar el mouse */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra suave para resaltar */
+  }
+  
+  .card-img-top {
+    object-fit: cover;
+    height: 200px; /* Altura fija para las imágenes */
+  }
+  
+  .card-title {
+    font-weight: bold;
+  }
