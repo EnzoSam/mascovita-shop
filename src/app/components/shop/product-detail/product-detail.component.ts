@@ -1,20 +1,14 @@
 import { NgIf } from '@angular/common';
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-
-interface Product {
-  id: number;
-  name: string;
-  description: string;
-  price: number;
-  category: string;
-  imageUrl: string;
-}
+import { CartService } from '../../../services/cart.service';
+import { Product } from '../../../model/interfaces/product.interface';
+import { CartComponent } from "../cart/cart.component";
 
 @Component({
   selector: 'app-product-detail',
   templateUrl: './product-detail.component.html',
-  imports:[NgIf],
+  imports: [NgIf, CartComponent],
   styleUrls: ['./product-detail.component.css']
 })
 export class ProductDetailComponent implements OnInit {
@@ -27,7 +21,12 @@ export class ProductDetailComponent implements OnInit {
     // Agrega más productos
   ];
 
-  constructor(private route: ActivatedRoute) { }
+  constructor(private route: ActivatedRoute,
+    private _cartService:CartService
+  ) { 
+    
+
+  }
 
   ngOnInit() {
     const id = Number(this.route.snapshot.paramMap.get('id'));
@@ -35,8 +34,7 @@ export class ProductDetailComponent implements OnInit {
   }
 
   addProductToCart() {
-    if (this.product) {
-      this.addToCart.emit(this.product);
-    }
+    if(this.product)
+      this._cartService.addProductToCart(this.product);    
   }  
 }

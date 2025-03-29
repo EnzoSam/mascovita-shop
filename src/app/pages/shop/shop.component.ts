@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductListComponent } from "../../components/shop/product-list/product-list.component";
 import { ProductFiltersComponent } from "../../components/shop/product-filters/product-filters.component";
+import { CartComponent } from "../../components/shop/cart/cart.component";
+import { ProductService } from '../../services/product.service';
 
 interface Product {
   id:number;
@@ -13,21 +15,25 @@ interface Product {
 
 @Component({
   selector: 'app-shop',
-  imports: [ProductListComponent, ProductFiltersComponent],
+  imports: [ProductListComponent, ProductFiltersComponent, CartComponent],
   templateUrl: './shop.component.html',
   styleUrl: './shop.component.css'
 })
 export class ShopComponent implements OnInit {
-  products: Product[] = [
-    {id:1, name: 'Producto 1', description: 'Descripción 1', price: 50, category: 'electronica', imageUrl: 'https://catycanar.vtexassets.com/arquivos/ids/170895/ORIGINAL-CRIADORES-DOG-SELECTION-ADULTOS-21kg--1-.png?v=638555360646000000' },
-    { id:2,name: 'Producto 2', description: 'Descripción 2', price: 100, category: 'ropa', imageUrl: 'https://catycanar.vtexassets.com/arquivos/ids/170895/ORIGINAL-CRIADORES-DOG-SELECTION-ADULTOS-21kg--1-.png?v=638555360646000000' },
-    { id: 3,name: 'Producto 3', description: 'Descripción 3', price: 150, category: 'libros', imageUrl: 'https://catycanar.vtexassets.com/arquivos/ids/170895/ORIGINAL-CRIADORES-DOG-SELECTION-ADULTOS-21kg--1-.png?v=638555360646000000' },
-    // Agrega más productos
-  ];
+  products: Product[] = [];
 
   filteredProducts: Product[] = [];
   selectedCategories: string[] = [];
   selectedPriceRange: string = '';
+
+  constructor(private _productService:ProductService)
+  {
+    _productService.getProducts().subscribe(p=>
+    {
+      this.products = p;
+    }
+    );
+  }
 
   ngOnInit() {
     this.filteredProducts = [...this.products];

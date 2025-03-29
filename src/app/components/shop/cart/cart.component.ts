@@ -1,5 +1,9 @@
 import { NgFor } from '@angular/common';
-import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnInit, OnDestroy } from '@angular/core';
+import { CartService } from '../../../services/cart.service';
+import { Observable, Subscription } from 'rxjs';
+import { Cart } from '../../../model/interfaces/cart.interface';
+import { RouterLink } from '@angular/router';
 
 interface Product {
   id: number;
@@ -13,28 +17,36 @@ interface Product {
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
-  imports:[NgFor],
+  imports:[RouterLink],
   styleUrls: ['./cart.component.css']
 })
-export class CartComponent implements OnInit {
-  cartItems: Product[] = [];
-  @Output() cartItemsChange = new EventEmitter<Product[]>();
+export class CartComponent implements OnInit, OnDestroy {
+  cartSubscription:Subscription;
+  cart:Cart;
+  total:number = 0;
+  constructor(private _cartService:CartService)
+  {
+    this.cart = _cartService.newCart();
+    this.cartSubscription = _cartService.cart
+    ().subscribe(_cart=>this.cartChanged(_cart));
+  }
+  ngOnDestroy(): void {
+    
+    if(this.cartSubscription)
+      this.cartSubscription.unsubscribe();
+  }
 
   ngOnInit() {
-    this.cartItems = JSON.parse(localStorage.getItem('cartItems') || '[]');
   }
 
-  removeItem(index: number) {
-    this.cartItems.splice(index, 1);
-    this.updateLocalStorage();
+  cartChanged(_cart:Cart)
+  {
+    this.total = this._cartService.getTotal(_cart);
   }
 
-  getTotal() {
-    return this.cartItems.reduce((total, item) => total + item.price, 0);
+  removeItem(product:Product)
+  {
+
   }
 
-  updateLocalStorage() {
-    localStorage.setItem('cartItems', JSON.stringify(this.cartItems));
-    this.cartItemsChange.emit([...this.cartItems]);
-  }
 }

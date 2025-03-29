@@ -14,17 +14,12 @@ interface Product {
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, CartComponent],
+  imports: [RouterOutlet],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
 
 export class AppComponent {
   title = 'mascovita-shop';
-  cartItems: Product[] = JSON.parse(localStorage.getItem('cartItems') || '[]');
 
-  addProductToCart(product: Product) {
-    this.cartItems.push(product);
-    localStorage.setItem('cartItems', JSON.stringify(this.cartItems));
-  }
 }
