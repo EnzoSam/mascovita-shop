@@ -21,17 +21,18 @@ export class ProductDetailComponent implements OnInit {
     private _cartService:CartService,
     private _productService:ProductService
   ) { 
-    _productService.getProducts().subscribe(_products=>
-    {
-      this.products=_products;
-    }
-    );
+
 
   }
 
   ngOnInit() {
-    const id = Number(this.route.snapshot.paramMap.get('id'));
-    this.product = this.products.find(product => product.id === id);
+    const id = this.route.snapshot.paramMap.get('id');
+    if(id)
+      this._productService.getProductById(id).subscribe(_product=>
+      {
+        this.product=_product;
+      }
+      );
   }
 
   addProductToCart() {

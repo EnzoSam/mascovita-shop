@@ -3,15 +3,8 @@ import { ProductListComponent } from "../../components/shop/product-list/product
 import { ProductFiltersComponent } from "../../components/shop/product-filters/product-filters.component";
 import { CartComponent } from "../../components/shop/cart/cart.component";
 import { ProductService } from '../../services/product.service';
+import { Product } from '../../model/interfaces/product.interface';
 
-interface Product {
-  id:number;
-  name: string;
-  description: string;
-  price: number;
-  category: string;
-  imageUrl: string;
-}
 
 @Component({
   selector: 'app-shop',
@@ -27,16 +20,18 @@ export class ShopComponent implements OnInit {
   selectedPriceRange: string = '';
 
   constructor(private _productService:ProductService)
-  {
-    _productService.getProducts().subscribe(p=>
+  {    
+    _productService.getAllProducts().pipe
+    ().subscribe(p=>
     {
       this.products = p;
+      this.filteredProducts = [...this.products];
     }
     );
   }
 
   ngOnInit() {
-    this.filteredProducts = [...this.products];
+    
   }
 
   onCategoryChange(categories: string[]) {
