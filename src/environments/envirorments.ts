@@ -1,4 +1,3 @@
-/// <reference types="node" />
 export const environment = {
     production: true,
     firebase: {      
