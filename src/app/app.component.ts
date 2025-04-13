@@ -22,10 +22,4 @@ interface Product {
 
 export class AppComponent {
   title = 'mascovita-shop';
-
-  constructor()
-    {
-    console.log(environment.firebase)
-    }
-  
 }
