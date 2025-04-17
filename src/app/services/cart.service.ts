@@ -92,17 +92,16 @@ export class CartService {
     }
   }  
 
-  buildCartDetailToWhatsapp(cart:Cart)
-  {
-    let detail = "Pedido \n";
+  buildCartDetailToWhatsapp(cart: Cart): string {
+    let detail = "Hola! estoy necesitando lo siguiente: \n";
   
-    for(let i of cart.products)
-    {
-       detail+= i.product.name + " cantidad: " + i.quantity + "\n";
+    for (let i of cart.products) {
+      detail += i.product.name + " cantidad: " + i.quantity + "\n";
     }
-
-    detail+="\n";
-    detail+= "Total: " + this.getTotal(cart);
-    return detail;
+  
+    detail += "\n";
+    detail += "*Total:* " + this.getTotal(cart);
+  
+    return encodeURIComponent(detail);
   }
 }
