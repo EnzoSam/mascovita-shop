@@ -49,4 +49,9 @@ export class CartComponent implements OnInit, OnDestroy {
 
   }
 
+  cartHasItems():boolean{
+    return this.cart && this.cart.products &&
+    this.cart.products.length > 0;
+  }
+
 }

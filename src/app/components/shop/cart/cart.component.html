@@ -1,16 +1,18 @@
+@if(cartHasItems()) {
 <div class="card">
     <div class="card-body">
-      <h2>Carrito de Compras</h2>
-      <div class="col">
-        <div class="row">
-          <strong>Total: ${{ total }}</strong>
-          <div>
-            <button [routerLink]="['/cart-resume']" class="btn btn-primary">Ver carrito</button>
-          </div>
+        <h2>Carrito de Compras</h2>
+        <div class="col">
+            <div class="row">
+                <strong>Total: ${{ total }}</strong>
+                <div>
+                    <button [routerLink]="['/cart-resume']" class="btn btn-primary">Ver carrito</button>
+                </div>
+            </div>
         </div>
-      </div>
-      <div class="mt-3">
-        
-      </div>
+        <div class="mt-3">
+
+        </div>
     </div>
-  </div>
+</div>
+}

@@ -100,7 +100,7 @@ export class CartService {
     }
   
     detail += "\n";
-    detail += "*Total:* " + this.getTotal(cart);
+    detail += "*Total: " + this.getTotal(cart) + '*';
   
     return encodeURIComponent(detail);
   }
