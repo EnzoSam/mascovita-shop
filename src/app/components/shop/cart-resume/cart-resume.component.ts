@@ -4,10 +4,11 @@ import { CartService } from '../../../services/cart.service';
 import { CartItem } from '../../../model/interfaces/cartItem.interface';
 import { FormsModule, NgModel } from '@angular/forms';
 import { Subscription } from 'rxjs';
+import { CurrencyPipe } from '@angular/common';
 
 @Component({
   selector: 'app-cart-resume',
-  imports: [FormsModule],
+  imports: [FormsModule, CurrencyPipe],
   templateUrl: './cart-resume.component.html',
   styleUrl: './cart-resume.component.css'
 })
@@ -50,5 +51,15 @@ export class CartResumeComponent implements OnDestroy{
   getDetail():string
   {
     return this._cartService.buildCartDetailToWhatsapp(this.cart);
+  }
+
+  getTotal():number
+  {
+    return this._cartService.getTotal(this.cart);
+  }
+
+  hasItems():boolean
+  {
+    return this.cart && this.cart.products && this.cart.products.length> 0;
   }
 }

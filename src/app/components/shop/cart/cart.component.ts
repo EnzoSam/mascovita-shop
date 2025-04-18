@@ -1,4 +1,4 @@
-import { NgFor } from '@angular/common';
+import { CurrencyPipe, NgFor } from '@angular/common';
 import { Component, Input, Output, EventEmitter, OnInit, OnDestroy } from '@angular/core';
 import { CartService } from '../../../services/cart.service';
 import { Observable, Subscription } from 'rxjs';
@@ -17,7 +17,7 @@ interface Product {
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
-  imports:[RouterLink],
+  imports:[RouterLink, CurrencyPipe],
   styleUrls: ['./cart.component.css']
 })
 export class CartComponent implements OnInit, OnDestroy {
@@ -41,6 +41,7 @@ export class CartComponent implements OnInit, OnDestroy {
 
   cartChanged(_cart:Cart)
   {
+    this.cart = _cart;
     this.total = this._cartService.getTotal(_cart);
   }
 

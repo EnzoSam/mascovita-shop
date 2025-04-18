@@ -1,0 +1,8 @@
+$color-primary: #FFCC29; // Amarillo Paw
+$color-secondary: #FFC107; // Amarillo Intenso
+$color-dark: #1C1C1C; // Negro fondo
+$color-light: #FFFF; // Blanco texto
+$color-success: #557A46; // Verde orgánico
+//$color-body: #FFF8E1; // Crema claro
+$color-body: #FFFF; // Crema claro
+@use "bootstrap/scss/bootstrap" with ( $primary: $color-primary, $secondary: $color-secondary, $success: $color-success, $dark: $color-dark, $light: $color-light, $body-bg: $color-light, $body-color: $color-dark);

@@ -1,0 +1,123 @@
+.home-container {
+    /* Estilos generales del contenedor */
+}
+
+
+/* Banner Principal */
+
+.hero-banner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 20px;
+    background-color: #f8f9fa;
+    /* Un fondo claro */
+}
+
+.hero-content {
+    flex: 1;
+    padding-right: 20px;
+}
+
+.hero-title {
+    font-size: 3.5rem;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 1rem;
+}
+
+.hero-subtitle {
+    font-size: 1.5rem;
+    color: #666;
+    margin-bottom: 2rem;
+}
+
+.hero-button {
+    padding: 15px 30px;
+    font-size: 1.2rem;
+}
+
+.hero-image {
+    flex: 1;
+    max-width: 50%;
+}
+
+.hero-image img {
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+
+/* Sección de Características */
+
+.features-section {
+    /* Estilos para la sección de características */
+}
+
+.section-title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #333;
+}
+
+.feature-item {
+    padding: 30px;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.feature-item i {
+    /* Estilos para los iconos */
+}
+
+.feature-item h3 {
+    color: #333;
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.feature-item p {
+    color: #777;
+}
+
+
+/* Llamada a la Acción */
+
+.cta-section {
+    /* Estilos para la sección de llamada a la acción */
+}
+
+.cta-title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+.cta-subtitle {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+}
+
+.cta-button {
+    padding: 15px 30px;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+
+/* Estilos Responsive (Opcional) */
+
+@media (max-width: 768px) {
+    .hero-banner {
+        flex-direction: column;
+        text-align: center;
+    }
+    .hero-content {
+        padding-right: 0;
+        margin-bottom: 30px;
+    }
+    .hero-image {
+        max-width: 100%;
+    }
+}

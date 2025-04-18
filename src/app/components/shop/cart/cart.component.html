@@ -4,7 +4,7 @@
         <h2>Carrito de Compras</h2>
         <div class="col">
             <div class="row">
-                <strong>Total: ${{ total }}</strong>
+                <strong>Total: {{ total | currency }}</strong>
                 <div>
                     <button [routerLink]="['/cart-resume']" class="btn btn-primary">Ver carrito</button>
                 </div>

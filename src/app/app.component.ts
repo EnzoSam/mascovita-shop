@@ -3,6 +3,7 @@ import { RouterOutlet } from '@angular/router';
 import { ShopComponent } from './pages/shop/shop.component';
 import { CartComponent } from "./components/shop/cart/cart.component";
 import { environment } from '../environments/envirorments';
+import { NavigationComponent } from "./components/navigation/navigation.component";
 
 interface Product {
   id: number;
@@ -15,7 +16,7 @@ interface Product {
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [RouterOutlet, NavigationComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

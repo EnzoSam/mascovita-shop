@@ -8,7 +8,7 @@ import { Product } from '../../../model/interfaces/product.interface';
 @Component({
   selector: 'app-product-list',
   templateUrl: './product-list.component.html',
-  imports: [NgFor, RouterLink,CommonModule],
+  imports: [NgFor, RouterLink,CommonModule, CurrencyPipe],
   styleUrls: ['./product-list.component.css']
 })
 export class ProductListComponent {

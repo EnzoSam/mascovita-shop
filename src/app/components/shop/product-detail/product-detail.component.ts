@@ -1,4 +1,4 @@
-import { NgIf } from '@angular/common';
+import { CurrencyPipe, NgIf } from '@angular/common';
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CartService } from '../../../services/cart.service';
@@ -9,7 +9,7 @@ import { ProductService } from '../../../services/product.service';
 @Component({
   selector: 'app-product-detail',
   templateUrl: './product-detail.component.html',
-  imports: [NgIf, CartComponent],
+  imports: [NgIf, CartComponent,CurrencyPipe],
   styleUrls: ['./product-detail.component.css']
 })
 export class ProductDetailComponent implements OnInit {
