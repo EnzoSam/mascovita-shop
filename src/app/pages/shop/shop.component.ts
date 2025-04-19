@@ -4,6 +4,7 @@ import { ProductFiltersComponent } from "../../components/shop/product-filters/p
 import { CartComponent } from "../../components/shop/cart/cart.component";
 import { ProductService } from '../../services/product.service';
 import { Product } from '../../model/interfaces/product.interface';
+import { IFilterProducts } from '../../model/interfaces/filter.interface';
 
 
 @Component({
@@ -13,56 +14,38 @@ import { Product } from '../../model/interfaces/product.interface';
   styleUrl: './shop.component.css'
 })
 export class ShopComponent implements OnInit {
-  products: Product[] = [];
-
+  filter:IFilterProducts;
   filteredProducts: Product[] = [];
-  selectedCategories: string[] = [];
-  selectedPriceRange: string = '';
-
   constructor(private _productService:ProductService)
   {    
-    _productService.getAllProducts().pipe
-    ().subscribe(p=>
-    {
-      this.products = p;
-      this.filteredProducts = [...this.products];
+    this.filter = {
+      categories:undefined,
+      brands:undefined,
+      age:undefined,
+      filterText:undefined,
+      pageFrom:0,
+      itemsCount:20
     }
-    );
   }
 
   ngOnInit() {
-    
+    this.filterProducts(); 
   }
 
   onCategoryChange(categories: string[]) {
-    this.selectedCategories = categories;
-    this.filterProducts();
-  }
-
-  onPriceRangeChange(priceRange: string) {
-    this.selectedPriceRange = priceRange;
+    this.filter.categories = categories;
     this.filterProducts();
   }
 
   filterProducts() {
-    this.filteredProducts = this.products.filter(product => {
-      let categoryMatch = true;
-      let priceMatch = true;
 
-      if (this.selectedCategories.length > 0) {
-        categoryMatch = this.selectedCategories.includes(product.category);
-      }
-
-      if (this.selectedPriceRange) {
-        const [min, max] = this.selectedPriceRange.split('-').map(Number);
-        if (max) {
-          priceMatch = product.price >= min && product.price <= max;
-        } else {
-          priceMatch = product.price >= min;
-        }
-      }
-
-      return categoryMatch && priceMatch;
-    });
+    this._productService.getProductsByFilter(this.filter).subscribe
+    (products=>
+    {
+      this.filteredProducts = products;
+    },
+    error=>{
+        console.log('Error al cargar productos');
+      });
   }
 }

@@ -5,6 +5,7 @@ import { CartResumeComponent } from './components/shop/cart-resume/cart-resume.c
 import { HomeComponent } from './pages/home/home.component';
 import { InfoComponent } from './pages/info/info.component';
 import { ContactComponent } from './pages/contact/contact.component';
+import { ErrorDefaultComponent } from './pages/error-default/error-default.component';
 export const routes: Routes = [
     { path: '', redirectTo: 'home', pathMatch:'full' },
     { path: 'home', component: HomeComponent },
@@ -12,5 +13,6 @@ export const routes: Routes = [
     { path: 'product/:id', component: ProductDetailComponent },
     { path: 'cart-resume', component: CartResumeComponent },
     { path: 'info', component: InfoComponent },
-    { path: 'contact', component: ContactComponent }
+    { path: 'contact', component: ContactComponent },
+    { path: '**', component: ErrorDefaultComponent }
   ];

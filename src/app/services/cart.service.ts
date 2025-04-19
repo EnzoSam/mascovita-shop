@@ -96,7 +96,8 @@ export class CartService {
     let detail = "Hola! estoy necesitando lo siguiente: \n";
   
     for (let i of cart.products) {
-      detail += i.product.name + " cantidad: " + i.quantity + "\n";
+      if(i.quantity > 0)
+        detail += i.product.name + " cantidad: " + i.quantity + "\n";
     }
   
     detail += "\n";
