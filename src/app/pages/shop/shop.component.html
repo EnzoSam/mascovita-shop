@@ -10,7 +10,13 @@
             </div>
         </aside>
         <main class="col-md-9">
-            <app-product-list [products]="filteredProducts"></app-product-list>
+            <app-product-list [products]="products"></app-product-list>
+            <div *ngIf="loading" class="col-12 text-center">
+                Cargando más productos...
+            </div>
+            <div *ngIf="!hasMore && products.length > 0" class="col-12 text-center mt-3">
+                No hay más productos para mostrar.
+            </div>
         </main>
     </div>
 </div>

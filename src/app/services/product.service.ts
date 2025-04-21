@@ -1,7 +1,7 @@
 import { inject, Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { from, map, Observable, of } from 'rxjs';
 import { Product } from '../model/interfaces/product.interface';
-import { Firestore, collection, collectionData, doc, docData, limit, query, where } from '@angular/fire/firestore';
+import { Firestore, collection, collectionData, doc, docData, getDocs, limit, orderBy, query, startAfter, where } from '@angular/fire/firestore';
 import { IFilterProducts } from '../model/interfaces/filter.interface';
 
 @Injectable({
@@ -34,44 +34,49 @@ export class ProductService {
     const q = query(this.productsCollection, where('category', '==', category));
     return collectionData(q, { idField: 'id' }) as Observable<Product[]> as Observable<Product[]>;
   }  
-
-  getProductsByFilter(filter: IFilterProducts): Observable<Product[]> {
+  getProductsByFilterWithPagination(filter: IFilterProducts, lastDocument: any): Observable<{ products: Product[], lastDocument: any }> {
     const queryConstraints = [];
 
+    console.log(filter);
+
     if (filter.categories && filter.categories.length > 0) {
-      queryConstraints.push(where('category', 'in', filter.categories));
+      queryConstraints.push(where('category', 'array-contains-any', filter.categories));
     }
 
     if (filter.brands && filter.brands.length > 0) {
-      queryConstraints.push(where('brand', 'in', filter.brands));
+      queryConstraints.push(where('name', 'array-contains-any', filter.brands));
     }
 
     if (filter.age && filter.age.length > 0) {
-      queryConstraints.push(where('age', 'array-contains-any', filter.age)); // Asumiendo que 'age' es un array en tus documentos
+      queryConstraints.push(where('name', 'array-contains-any', filter.age));
     }
 
     if (filter.filterText) {
-      // Aquí puedes implementar una búsqueda más avanzada si es necesario.
-      // Una búsqueda simple podría ser por nombre o descripción que contenga el texto.
-      // Esto puede requerir indexación especial en Firebase.
       queryConstraints.push(where('name', '>=', filter.filterText));
-      queryConstraints.push(where('name', '<=', filter.filterText + '\uf8ff')); // Para búsqueda por prefijo
+      queryConstraints.push(where('name', '<=', filter.filterText + '\uf8ff'));
     }
 
-    // Paginación
     const first = limit(filter.itemsCount);
     let q;
 
-    if (filter.pageFrom > 0) {
-      // Necesitas una forma de obtener el último documento de la página anterior para usar startAfter
-      // Esto requiere mantener un registro del último documento consultado.
-      // Para simplificar, este ejemplo muestra cómo hacer la primera página.
-      console.warn('La paginación a partir de una página específica requiere una implementación más compleja con cursores.');
-      q = query(this.productsCollection, ...queryConstraints, first);
+    if (lastDocument) {
+      q = query(this.productsCollection, ...queryConstraints, orderBy('__name__'), startAfter(lastDocument), first);
     } else {
-      q = query(this.productsCollection, ...queryConstraints, first);
+      q = query(this.productsCollection, ...queryConstraints, orderBy('__name__'), first);
     }
 
-    return collectionData(q, { idField: 'id' }) as Observable<Product[]>;
+    return from(getDocs(q)).pipe(
+      map(snapshot => {
+        const products: Product[] = [];
+        let newLastDocument: any = null;
+
+        snapshot.forEach(doc => {
+          products.push({ id: +doc.id, ...doc.data() } as Product);
+          newLastDocument = doc;
+        });
+
+        return { products, lastDocument: newLastDocument };
+      })
+    );
   }
 }
