@@ -8,4 +8,11 @@ import { Component } from '@angular/core';
 })
 export class ContactComponent {
 
+  sendMessage(nombre: string, mensaje: string) {
+    let texto = '';
+    if(nombre)
+      texto = `Hola! soy ${nombre}. \n ${mensaje}`;
+    const url = `https://wa.me/5493751448459/?text=${encodeURIComponent(texto)}`;
+    window.open(url, '_blank');
+  }
 }

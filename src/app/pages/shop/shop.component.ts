@@ -74,13 +74,11 @@ export class ShopComponent implements OnInit {
 
   onCategoryChange(categories: string[]) {
     this.lastDocument = null;
-    this.products = []
+    this.products = [];
     this.filter.next({
       ...this.filter.value,
-      ...this.filter.value.categories = categories,
+      categories: categories,
       pageFrom: 0
-    });    
-    //this.filter.categories = categories;
-    //this.filterProducts();
+    });
   }
 }

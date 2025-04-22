@@ -19,7 +19,7 @@ export class ProductService {
   }
 
   private firestore: Firestore = inject(Firestore);
-  private productsCollection = collection(this.firestore, 'products'); // 'productos' es el nombre de tu colección en Firestore
+  private productsCollection = collection(this.firestore, 'products');
 
   getAllProducts(): Observable<Product[]> {
     return collectionData(this.productsCollection, { idField: 'id' }) as Observable<Product[]>;
@@ -37,21 +37,11 @@ export class ProductService {
   getProductsByFilterWithPagination(filter: IFilterProducts, lastDocument: any): Observable<{ products: Product[], lastDocument: any }> {
     const queryConstraints = [];
 
-    console.log(filter);
-
     if (filter.categories && filter.categories.length > 0) {
-      queryConstraints.push(where('category', 'array-contains-any', filter.categories));
+      queryConstraints.push(where('category', 'in', filter.categories));
     }
 
-    if (filter.brands && filter.brands.length > 0) {
-      queryConstraints.push(where('name', 'array-contains-any', filter.brands));
-    }
-
-    if (filter.age && filter.age.length > 0) {
-      queryConstraints.push(where('name', 'array-contains-any', filter.age));
-    }
-
-    if (filter.filterText) {
+    if (filter.filterText && filter.filterText !== '') {
       queryConstraints.push(where('name', '>=', filter.filterText));
       queryConstraints.push(where('name', '<=', filter.filterText + '\uf8ff'));
     }
