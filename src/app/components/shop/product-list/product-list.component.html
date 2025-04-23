@@ -1,16 +1,19 @@
 <div class="row row-cols-1 row-cols-md-3 g-4">
     <div class="col" *ngFor="let product of products">
         <div class="card">
-            <div class="card-img-container">
-                @if (product.image && product.image !== '') {
-                <img [src]="product.image" class="card-img-top" [alt]="product.name"> } @else {
-                <img src="/assets/defaultproduct.jpg" class="card-img-top" [alt]="product.name"> }
-            </div>
+            <a [routerLink]="['/product', product.id]">
+                <div class="card-img-container">
+                    @if (product.image && product.image !== '') {
+                    <img [src]="product.image" class="card-img-top" [alt]="product.name" /> } @else {
+                    <img src="/assets/defaultproduct.jpg" class="card-img-top" [alt]="product.name" /> }
+                </div>
+            </a>
             <div class="card-body">
                 <h5 class="card-title">{{ product.name }}</h5>
-                <p class="card-text">{{ product.description }}</p>
-                <p class="card-text">Precio: ${{ product.price | currency}}</p>
-                <a [routerLink]="['/product', product.id]" class="btn btn-primary">Ver detalles</a>
+                <p class="card-text">Precio: ${{ product.price | currency }}</p>
+                <button type="button" (click)="addProductToCart(product)" class="btn btn-primary">
+          Agregar al carrito
+        </button>
             </div>
         </div>
     </div>

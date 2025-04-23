@@ -7,6 +7,16 @@
                 <input class="form-check-input" type="checkbox" [value]="category" (change)="categoryChange(category, $event)">
                 <label class="form-check-label">{{ category }}</label>
             </div>
+            <h3>Marca</h3>
+            <div class="form-check" *ngFor="let brand of brands">
+                <input class="form-check-input" type="checkbox" [value]="brand" (change)="brandChange(brand, $event)">
+                <label class="form-check-label">{{ brand }}</label>
+            </div>
+            <h3>Edad</h3>
+            <div class="form-check" *ngFor="let age of ages">
+                <input class="form-check-input" type="checkbox" [value]="age" (change)="brandChange(age, $event)">
+                <label class="form-check-label">{{ age }}</label>
+            </div>
         </div>
     </div>
 </div>

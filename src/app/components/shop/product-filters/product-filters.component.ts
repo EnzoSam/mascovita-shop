@@ -11,12 +11,15 @@ import { ProductService } from '../../../services/product.service';
 export class ProductFiltersComponent implements OnInit{
 
   @Output() categoryChanged = new EventEmitter<string[]>();
-  @Output() priceRangeChanged = new EventEmitter<string>();
+  @Output() brandChanged = new EventEmitter<string[]>();
+  @Output() ageChanged = new EventEmitter<string[]>();
 
   categories:string[] = [];
-  priceRanges = ['0-50', '51-100', '100+'];
+  brands:string[] = [];
+  ages:string[] = [];
   selectedCategories: string[] = [];
-  selectedPriceRange: string = '';
+  selectedBrands: string[] = [];
+  selectedAges: string[] = [];
 
   constructor(private _productService:ProductService)
   {
@@ -26,6 +29,8 @@ export class ProductFiltersComponent implements OnInit{
   ngOnInit(): void {
     
     this.categories = this._productService.getCategories();
+    this.brands = this._productService.getBrands();
+    this.ages = this._productService.getAges();
   }
 
   categoryChange(category: string, event: any) {
@@ -40,8 +45,27 @@ export class ProductFiltersComponent implements OnInit{
     this.categoryChanged.emit(this.selectedCategories);
   }
 
-  priceRangeChange(priceRange: string) {
-    this.selectedPriceRange = priceRange;
-    this.priceRangeChanged.emit(this.selectedPriceRange);
-  }
+  brandChange(brand: string, event: any) {
+    if (event.target.checked) {
+      this.selectedBrands.push(brand);
+    } else {
+      const index = this.selectedBrands.indexOf(brand);
+      if (index !== -1) {
+        this.selectedCategories.splice(index, 1);
+      }
+    }
+    this.brandChanged.emit(this.selectedBrands);
+  }  
+
+  ageChange(brand: string, event: any) {
+    if (event.target.checked) {
+      this.selectedAges.push(brand);
+    } else {
+      const index = this.selectedAges.indexOf(brand);
+      if (index !== -1) {
+        this.selectedAges.splice(index, 1);
+      }
+    }
+    this.ageChanged.emit(this.selectedAges);
+  }    
 }

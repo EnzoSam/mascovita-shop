@@ -4,6 +4,7 @@ import { ProductFiltersComponent } from "../product-filters/product-filters.comp
 import { RouterLink } from '@angular/router';
 import { CartComponent } from "../cart/cart.component";
 import { Product } from '../../../model/interfaces/product.interface';
+import { CartService } from '../../../services/cart.service';
 
 @Component({
   selector: 'app-product-list',
@@ -12,9 +13,20 @@ import { Product } from '../../../model/interfaces/product.interface';
   styleUrls: ['./product-list.component.css']
 })
 export class ProductListComponent {
+
+constructor(private _cartService:CartService)
+{}
+
 onFilterChange($event: Event) {
 throw new Error('Method not implemented.');
 }
   @Input() products: Product[] = [];
 filteredProducts: any;
+
+
+addProductToCart(product:Product) {
+  if(product)
+    this._cartService.addProductToCart(product);    
 }
+}
+

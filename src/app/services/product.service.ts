@@ -18,6 +18,16 @@ export class ProductService {
     return ["PERROS", "GATOS"];
   }
 
+  getBrands():string[]
+  {
+    return ["SABROSITOS", "UPPER",'PURINA','WHISKAS','DOG SELECTION','NUTRIBON'];
+  }
+
+  getAges():string[]
+  {
+    return ["ADULTO", "CACHORRO"];
+  }
+
   private firestore: Firestore = inject(Firestore);
   private productsCollection = collection(this.firestore, 'products');
 
