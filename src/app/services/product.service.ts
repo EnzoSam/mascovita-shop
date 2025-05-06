@@ -3,7 +3,7 @@ import { from, map, Observable, of } from 'rxjs';
 import { Product } from '../model/interfaces/product.interface';
 import { Firestore, collection, collectionData, doc, docData, getDocs, limit, orderBy, query, startAfter, where } from '@angular/fire/firestore';
 import { IFilterProducts } from '../model/interfaces/filter.interface';
-import { environment } from '../../environments/envirorments.dev';
+import { environment } from '../../environments/envirorments';
 
 @Injectable({
   providedIn: 'root'
