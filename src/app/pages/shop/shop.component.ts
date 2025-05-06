@@ -81,4 +81,14 @@ export class ShopComponent implements OnInit {
       pageFrom: 0
     });
   }
+
+  onBrandChange(brands: string[]) {
+    this.lastDocument = null;
+    this.products = [];
+    this.filter.next({
+      ...this.filter.value,
+      brands: brands,
+      pageFrom: 0
+    });
+  }  
 }

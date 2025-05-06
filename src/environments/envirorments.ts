@@ -10,4 +10,8 @@ export const environment = {
       measurementId: (window as any)['env']['MEASUREMENT_ID'],
     },
     apiBaseUrl: (window as any)['env']['API_BASE_URL'],
+    ecomerce:
+    {
+      discount: (window as any)['env']['API_BASE_URL'] | 7
+    }
   };

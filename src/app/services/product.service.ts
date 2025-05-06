@@ -3,6 +3,7 @@ import { from, map, Observable, of } from 'rxjs';
 import { Product } from '../model/interfaces/product.interface';
 import { Firestore, collection, collectionData, doc, docData, getDocs, limit, orderBy, query, startAfter, where } from '@angular/fire/firestore';
 import { IFilterProducts } from '../model/interfaces/filter.interface';
+import { environment } from '../../environments/envirorments.dev';
 
 @Injectable({
   providedIn: 'root'
@@ -51,6 +52,10 @@ export class ProductService {
       queryConstraints.push(where('category', 'in', filter.categories));
     }
 
+    if (filter.brands && filter.brands.length > 0) {
+      queryConstraints.push(where('brand', 'in', filter.brands));
+    }    
+
     if (filter.filterText && filter.filterText !== '') {
       queryConstraints.push(where('name', '>=', filter.filterText));
       queryConstraints.push(where('name', '<=', filter.filterText + '\uf8ff'));
@@ -71,7 +76,9 @@ export class ProductService {
         let newLastDocument: any = null;
 
         snapshot.forEach(doc => {
-          products.push({ id: +doc.id, ...doc.data() } as Product);
+          let p = { id: +doc.id, ...doc.data() } as Product;
+          p.discountedPrice = p.price - ((p.price * environment.ecomerce.discount) / 100);
+          products.push(p);
           newLastDocument = doc;
         });
 

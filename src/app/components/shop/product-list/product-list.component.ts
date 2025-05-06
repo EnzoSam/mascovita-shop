@@ -28,5 +28,15 @@ addProductToCart(product:Product) {
   if(product)
     this._cartService.addProductToCart(product);    
 }
+
+buyNow(product:Product) {
+  if(product)
+    this._cartService.addProductToCart(product);    
+}
+
+getDetailToOrden(_product:Product):string
+{
+  return this._cartService.buildProductoDetailToWhatsapp(_product);
+}
 }
 

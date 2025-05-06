@@ -105,4 +105,12 @@ export class CartService {
   
     return encodeURIComponent(detail);
   }
+
+  buildProductoDetailToWhatsapp(product: Product): string {
+    let detail = "Hola! estoy necesitando lo siguiente: \n";
+  
+    detail += product.name;
+  
+    return encodeURIComponent(detail);
+  }  
 }

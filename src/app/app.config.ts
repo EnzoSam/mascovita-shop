@@ -2,7 +2,7 @@ import { ApplicationConfig, provideZoneChangeDetection } from '@angular/core';
 import { provideRouter } from '@angular/router';
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
-import { environment } from '../environments/envirorments';
+import { environment } from '../environments/envirorments.dev';
 
 import { routes } from './app.routes';
 import { CartService } from './services/cart.service';

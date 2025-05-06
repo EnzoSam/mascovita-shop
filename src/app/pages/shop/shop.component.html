@@ -1,18 +1,28 @@
 <app-cart></app-cart>
-<div class="container-fluid">
+<div class="container-fluid mt-0 pt-0">
+    <div class="row">
+        <div class="col">
+            <div class="alert alert-info mt-0" role="alert">
+                Por el momento solo aceptamos pagos en efectivo (contrareembolso). Los precios incluyen un descuento por pago en efectivo
+            </div>
+        </div>
+    </div>
     <div class="row">
         <aside class="col-md-3">
             <button class="btn btn-primary d-md-none" type="button" data-bs-toggle="collapse" data-bs-target="#filters" aria-expanded="false" aria-controls="filters">
           Mostrar/Ocultar Filtros
         </button>
             <div class="collapse d-md-block" id="filters">
-                <app-product-filters (categoryChanged)="onCategoryChange($event)"></app-product-filters>
+                <app-product-filters (categoryChanged)="onCategoryChange($event)" (brandChanged)="onBrandChange($event)">
+
+                </app-product-filters>
             </div>
         </aside>
         <main class="col-md-9">
             <app-product-list [products]="products"></app-product-list>
             <div *ngIf="loading" class="col-12 text-center">
-                Cargando más productos...
+                @if(!products || products.length === 0) { Cargando productos... } @else { Cargando más productos... }
+
             </div>
             <div *ngIf="!hasMore && products.length > 0" class="col-12 text-center mt-3">
                 No hay más productos para mostrar.
