@@ -16,12 +16,14 @@ export class ProductService {
 
   getCategories():string[]
   {
-    return ["PERROS", "GATOS"];
+    return ["PERROS", "GATOS","AGRO"];
   }
 
   getBrands():string[]
   {
-    return ["SABROSITOS", "UPPER",'PURINA','WHISKAS','DOG SELECTION','NUTRIBON'];
+    return ['SABROSITOS', 'UPPER','PURINA','WHISKAS',
+      'DOG SELECTION','NUTRIBON', 'DOCTOR PERROT', 'CRIANZA', 'DOG CHOW',
+    'CAT CHOW','DOGUI','GANACANN','GRAN CAMPEON','PROTEMIX'];
   }
 
   getAges():string[]

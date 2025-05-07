@@ -51,7 +51,7 @@ export class ProductFiltersComponent implements OnInit{
     } else {
       const index = this.selectedBrands.indexOf(brand);
       if (index !== -1) {
-        this.selectedCategories.splice(index, 1);
+        this.selectedBrands.splice(index, 1);
       }
     }
     this.brandChanged.emit(this.selectedBrands);
