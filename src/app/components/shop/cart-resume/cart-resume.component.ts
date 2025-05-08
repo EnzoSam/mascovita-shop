@@ -5,7 +5,7 @@ import { CartItem } from '../../../model/interfaces/cartItem.interface';
 import { FormsModule, NgModel } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { CurrencyPipe } from '@angular/common';
-import { environment } from '../../../../environments/envirorments.dev';
+import { environment } from '../../../../environments/envirorments';
 
 @Component({
   selector: 'app-cart-resume',
