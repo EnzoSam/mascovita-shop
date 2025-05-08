@@ -12,6 +12,7 @@ export const environment = {
     apiBaseUrl: (window as any)['env']['API_BASE_URL'],
     ecomerce:
     {
-      discount: (window as any)['env']['API_BASE_URL'] | 7
+      discount: (window as any)['env']['DISCOUNT'] | 7,
+      shippingCost: (window as any)['env']['SHIPPING_COST'] | 3500
     }
   };

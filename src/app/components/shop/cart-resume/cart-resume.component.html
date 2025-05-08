@@ -32,6 +32,15 @@
             <li class="list-group-item text-center">El carrito está vacío.</li>
             }
           </ul>
+          <div class="row">
+            <div class="col">
+                <div class="alert alert-info mt-1">
+                    Envíos gratis desde km 4 hasta km 11 en horarios especificos.
+                    Fuera del horario determinado el costo por motomandado es de
+                    {{defaultShippingCost | currency}}
+                </div>
+            </div>
+        </div>          
           <div class="d-flex justify-content-between align-items-center mb-3">
             <strong>Total:</strong>
             <span class="fs-5">{{ getTotal() | currency}}</span>

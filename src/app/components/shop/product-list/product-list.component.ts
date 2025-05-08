@@ -1,7 +1,7 @@
 import { CommonModule, CurrencyPipe, NgFor, NgIf } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { ProductFiltersComponent } from "../product-filters/product-filters.component";
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { CartComponent } from "../cart/cart.component";
 import { Product } from '../../../model/interfaces/product.interface';
 import { CartService } from '../../../services/cart.service';
@@ -14,7 +14,9 @@ import { CartService } from '../../../services/cart.service';
 })
 export class ProductListComponent {
 
-constructor(private _cartService:CartService)
+constructor(private _cartService:CartService,
+  private _router:Router
+)
 {}
 
 onFilterChange($event: Event) {
@@ -32,6 +34,8 @@ addProductToCart(product:Product) {
 buyNow(product:Product) {
   if(product)
     this._cartService.addProductToCart(product);    
+
+  this._router.navigate(['../cart-resume']);
 }
 
 getDetailToOrden(_product:Product):string

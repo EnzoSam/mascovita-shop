@@ -5,6 +5,7 @@ import { CartItem } from '../../../model/interfaces/cartItem.interface';
 import { FormsModule, NgModel } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { CurrencyPipe } from '@angular/common';
+import { environment } from '../../../../environments/envirorments.dev';
 
 @Component({
   selector: 'app-cart-resume',
@@ -16,9 +17,11 @@ export class CartResumeComponent implements OnDestroy{
 
   cart:Cart;
   cartSubscription:Subscription
+  defaultShippingCost:number = 0;
 
   constructor(private _cartService:CartService)
   {
+    this.defaultShippingCost = environment.ecomerce.shippingCost;
     this.cart = _cartService.currentCart();
     this.cartSubscription = _cartService.cart().subscribe
     (_cart=>
