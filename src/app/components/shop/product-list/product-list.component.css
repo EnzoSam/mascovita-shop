@@ -31,3 +31,8 @@ a {
     justify-content: center;
     align-items: center;
 }
+
+.discounted-price {
+    color: green;
+    font-weight: bold;
+}

@@ -95,7 +95,7 @@ export class ProductService {
 
         snapshot.forEach(doc => {
           let p = { id: +doc.id, ...doc.data() } as Product;
-          p.discountedPrice = p.price - ((p.price * this.defaultDiscount) / 100);
+          this.applyDiscount(p)
           products.push(p);
           newLastDocument = doc;
         });
@@ -103,5 +103,11 @@ export class ProductService {
         return { products, lastDocument: newLastDocument };
       })
     );
+  }
+
+  applyDiscount(_product:Product)
+  {
+    _product.discountedPrice = 
+    _product.price - ((_product.price * this.defaultDiscount) / 100);
   }
 }
