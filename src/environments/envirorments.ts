@@ -13,6 +13,8 @@ export const environment = {
     ecomerce:
     {
       discount: (window as any)['env']['DISCOUNT'] | 7,
-      shippingCost: (window as any)['env']['SHIPPING_COST'] | 3500
+      shippingCost: (window as any)['env']['SHIPPING_COST'] | 3500,
+      categories: (window as any)['env']['CATEGORIES'],
+      brands: (window as any)['env']['BRANDS']
     }
   };

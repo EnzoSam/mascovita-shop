@@ -73,8 +73,7 @@ export class ShopComponent implements OnInit {
   }
 
   onCategoryChange(categories: string[]) {
-    this.lastDocument = null;
-    this.products = [];
+    this.resetSearch();
     this.filter.next({
       ...this.filter.value,
       categories: categories,
@@ -82,9 +81,17 @@ export class ShopComponent implements OnInit {
     });
   }
 
-  onBrandChange(brands: string[]) {
+  resetSearch()
+  {
     this.lastDocument = null;
     this.products = [];
+    this.hasMore =  true;
+  }
+
+
+  onBrandChange(brands: string[]) {
+
+    this.resetSearch();
     this.filter.next({
       ...this.filter.value,
       brands: brands,
