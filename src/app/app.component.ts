@@ -4,6 +4,7 @@ import { ShopComponent } from './pages/shop/shop.component';
 import { CartComponent } from "./components/shop/cart/cart.component";
 import { environment } from '../environments/envirorments';
 import { NavigationComponent } from "./components/navigation/navigation.component";
+import { inject } from '@vercel/analytics';
 
 interface Product {
   id: number;
@@ -23,4 +24,11 @@ interface Product {
 
 export class AppComponent {
   title = 'mascovita-shop';
+
+  constructor()
+  {
+      inject();
+  }
+  
+
 }
