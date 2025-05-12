@@ -30,7 +30,9 @@ export class ProductDetailComponent implements OnInit {
     if(id)
       this._productService.getProductById(id).subscribe(_product=>
       {
-        this.product=_product;
+        this._productService.applyDiscount(_product as Product);
+        this.product =_product;    
+        console.log(this.product)    
       }
       );
   }

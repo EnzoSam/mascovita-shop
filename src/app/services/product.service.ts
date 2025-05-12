@@ -10,20 +10,33 @@ import { environment } from '../../environments/envirorments';
 })
 export class ProductService {
 
+  categories:string[];
+  brands:string[];
+  defaultDiscount:number;
+
+  constructor()
+  {
+    this.categories = environment.ecomerce.categories ||
+    ["PERROS", "GATOS","AGRO"];
+    this.brands = environment.ecomerce.brands ||
+    ['SABROSITOS', 'UPPER','PURINA','WHISKAS',
+      'DOG SELECTION','NUTRIBON', 'DOCTOR PERROT', 'CRIANZA', 'DOG CHOW',
+    'CAT CHOW','DOGUI','GANACAN','GRAN CAMPEON','PROTEMIX'];
+    this.defaultDiscount = environment.ecomerce.discount;
+  }
+
   getProducts(): Observable<Product[]> {
     return of([]);
   }
 
   getCategories():string[]
   {
-    return ["PERROS", "GATOS","AGRO"];
+    return this.categories;
   }
 
   getBrands():string[]
   {
-    return ['SABROSITOS', 'UPPER','PURINA','WHISKAS',
-      'DOG SELECTION','NUTRIBON', 'DOCTOR PERROT', 'CRIANZA', 'DOG CHOW',
-    'CAT CHOW','DOGUI','GANACANN','GRAN CAMPEON','PROTEMIX'];
+    return this.brands;
   }
 
   getAges():string[]
@@ -47,9 +60,12 @@ export class ProductService {
     const q = query(this.productsCollection, where('category', '==', category));
     return collectionData(q, { idField: 'id' }) as Observable<Product[]> as Observable<Product[]>;
   }  
-  getProductsByFilterWithPagination(filter: IFilterProducts, lastDocument: any): Observable<{ products: Product[], lastDocument: any }> {
+  getProductsByFilterWithPagination
+  (filter: IFilterProducts, lastDocument: any): 
+    Observable<{ products: Product[], lastDocument: any }> {
     const queryConstraints = [];
 
+    console.log(lastDocument)
     if (filter.categories && filter.categories.length > 0) {
       queryConstraints.push(where('category', 'in', filter.categories));
     }
@@ -79,7 +95,7 @@ export class ProductService {
 
         snapshot.forEach(doc => {
           let p = { id: +doc.id, ...doc.data() } as Product;
-          p.discountedPrice = p.price - ((p.price * environment.ecomerce.discount) / 100);
+          this.applyDiscount(p)
           products.push(p);
           newLastDocument = doc;
         });
@@ -87,5 +103,11 @@ export class ProductService {
         return { products, lastDocument: newLastDocument };
       })
     );
+  }
+
+  applyDiscount(_product:Product)
+  {
+    _product.discountedPrice = 
+    _product.price - ((_product.price * this.defaultDiscount) / 100);
   }
 }
