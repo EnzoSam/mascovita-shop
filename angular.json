@@ -23,8 +23,8 @@
                         "assets": [
                             "src/favicon.ico",
                             "src/assets",
-                            "robots.txt",
-                            "sitemap.xml",
+                            "src/robots.txt",
+                            "src/sitemap.xml",
                             {
                                 "glob": "**/*",
                                 "input": "public"
