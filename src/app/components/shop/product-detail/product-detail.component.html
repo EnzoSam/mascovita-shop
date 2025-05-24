@@ -11,12 +11,21 @@
             <p>{{ product.description }}</p>
 
             <p class="card-text">
-            @if (product.discountedPrice !== undefined && product.discountedPrice !== null && product.discountedPrice
-            < product.price) { Precio: <span class="original-price text-muted me-2"><s>{{ product.price | currency }}</s></span>
-                <span class="discounted-price">{{ product.discountedPrice | currency }}</span> } @else { Precio: {{ product.price | currency }} }            
+                @if (product.discountedPrice !== undefined && product.discountedPrice !== null && product.discountedPrice
+                < product.price) { Precio: <span class="original-price text-muted me-2"><s>{{ product.price | currency }}</s></span>
+                    <span class="discounted-price">{{ product.discountedPrice | currency }}</span> } @else { Precio: {{ product.price | currency }} }
             </p>
-                
-            <button class="btn btn-primary" (click)="addProductToCart()">Agregar al carrito</button>
+
+            <div class="col-md-5 col-sm-10">
+                <div class="row">
+                    <button class="btn btn-primary" (click)="buyNow()">Pedir ahora</button>
+                </div>
+                <div class="row mt-2">
+                    <button class="btn btn-outline-success" (click)="addProductToCart()">Agregar al carrito</button>
+                </div>
+
+            </div>
+
         </div>
     </div>
 </div>

@@ -16,10 +16,10 @@
                         <span class="discounted-price">{{ product.discountedPrice | currency }}</span> } @else { Precio: {{ product.price | currency }} }
                 </p>
                 <div class="d-grid gap-2">
-                    <button type="button" (click)="buyNow(product)" class="btn btn-success">
+                    <button type="button" (click)="buyNow(product)" class="btn btn-primary">
                         Pedir ahora
                     </button>
-                    <button type="button" (click)="addProductToCart(product)" class="btn btn-primary">
+                    <button type="button" (click)="addProductToCart(product)" class="btn btn-outline-success">
               Agregar al carrito
             </button>
                 </div>

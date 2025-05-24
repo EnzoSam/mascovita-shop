@@ -1,6 +1,6 @@
 import { CurrencyPipe, NgIf } from '@angular/common';
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute,  Router } from '@angular/router';
 import { CartService } from '../../../services/cart.service';
 import { Product } from '../../../model/interfaces/product.interface';
 import { CartComponent } from "../cart/cart.component";
@@ -19,7 +19,8 @@ export class ProductDetailComponent implements OnInit {
 
   constructor(private route: ActivatedRoute,
     private _cartService:CartService,
-    private _productService:ProductService
+    private _productService:ProductService,
+    private _router: Router
   ) { 
 
 
@@ -41,4 +42,12 @@ export class ProductDetailComponent implements OnInit {
     if(this.product)
       this._cartService.addProductToCart(this.product);    
   }  
+
+buyNow() {
+  if(!this.product)
+    return;
+
+  this._cartService.addProductToCart(this.product);    
+  this._router.navigate(['../cart-resume']);
+}
 }

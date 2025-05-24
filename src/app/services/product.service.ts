@@ -17,9 +17,9 @@ export class ProductService {
   constructor()
   {
     this.categories = environment.ecomerce.categories ||
-    ["PERROS", "GATOS","AGRO"];
+    ["PERROS", "GATOS","AGRO","ACCESORIOS"];
     this.brands = environment.ecomerce.brands ||
-    ['SABROSITOS', 'UPPER','PURINA','WHISKAS',
+    ['SABROSITOS', 'UPPER','PURINA','WHISKAS', 'PEDIGREE',
       'DOG SELECTION','NUTRIBON', 'DOCTOR PERROT', 'CRIANZA', 'DOG CHOW',
     'CAT CHOW','DOGUI','GANACAN','GRAN CAMPEON','PROTEMIX'];
     this.defaultDiscount = environment.ecomerce.discount;

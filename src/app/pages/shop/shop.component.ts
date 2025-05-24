@@ -8,6 +8,7 @@ import { IFilterProducts } from '../../model/interfaces/filter.interface';
 import { BehaviorSubject, combineLatest, Subject, Subscription } from 'rxjs';
 import { switchMap, tap, takeUntil } from 'rxjs/operators';
 import { CurrencyPipe, NgIf } from '@angular/common';
+import { ActivatedRoute, Router } from '@angular/router';
 
 
 @Component({
@@ -24,8 +25,11 @@ export class ShopComponent implements OnInit {
   hasMore = true;
   private lastDocument: any = null;
   private destroy$ = new Subject<void>();
+  initialCategory?:string;
 
-  constructor(private productService: ProductService) { }
+  constructor(private productService: ProductService,
+    private _activateRoute:ActivatedRoute
+  ) { }
 
   ngOnInit(): void {
     this.filter.pipe(
@@ -43,6 +47,16 @@ export class ShopComponent implements OnInit {
       }),
       takeUntil(this.destroy$)
     ).subscribe();
+
+      const id = this._activateRoute.params.subscribe(data=>{
+        const {category} = data;  
+
+        if(category)
+        {
+          this.initialCategory = category.toUpperCase();
+        }
+      })
+
   }
 
   ngOnDestroy(): void {

@@ -1,5 +1,5 @@
 import { NgFor } from '@angular/common';
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ProductService } from '../../../services/product.service';
 
 @Component({
@@ -13,6 +13,7 @@ export class ProductFiltersComponent implements OnInit{
   @Output() categoryChanged = new EventEmitter<string[]>();
   @Output() brandChanged = new EventEmitter<string[]>();
   @Output() ageChanged = new EventEmitter<string[]>();
+  @Input() initialCategory?:string;
 
   categories:string[] = [];
   brands:string[] = [];
@@ -31,6 +32,12 @@ export class ProductFiltersComponent implements OnInit{
     this.categories = this._productService.getCategories();
     this.brands = this._productService.getBrands();
     this.ages = this._productService.getAges();
+
+    if(this.initialCategory)
+    {
+      this.selectedCategories.push(this.initialCategory);
+      this.categoryChanged.emit(this.selectedCategories);
+    }
   }
 
   categoryChange(category: string, event: any) {

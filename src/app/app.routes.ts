@@ -9,6 +9,7 @@ import { ErrorDefaultComponent } from './pages/error-default/error-default.compo
 export const routes: Routes = [
     { path: '', redirectTo: 'home', pathMatch:'full' },
     { path: 'home', component: HomeComponent },
+    { path: 'shop/:category', component: ShopComponent },
     { path: 'shop', component: ShopComponent },
     { path: 'product/:id', component: ProductDetailComponent },
     { path: 'cart-resume', component: CartResumeComponent },

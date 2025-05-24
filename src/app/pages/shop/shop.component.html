@@ -13,7 +13,7 @@
           Mostrar/Ocultar Filtros
         </button>
             <div class="collapse d-md-block" id="filters">
-                <app-product-filters (categoryChanged)="onCategoryChange($event) " (brandChanged)="onBrandChange($event) ">
+                <app-product-filters [initialCategory]="initialCategory" (categoryChanged)="onCategoryChange($event) " (brandChanged)="onBrandChange($event) ">
 
                 </app-product-filters>
             </div>
