@@ -1,0 +1,5 @@
+User-agent: *
+Disallow: /admin/
+Disallow: /cart-resume/
+Allow: /
+Sitemap: https://mascovita.com/sitemap.xml
