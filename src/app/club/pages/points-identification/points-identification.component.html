@@ -1,0 +1,35 @@
+<div class="container mt-5">
+    <div class="row justify-content-center p-3">
+        <div class="card col-md-5 shadow-sm rounded">
+            <h2 class="card-title text-center mb-4 text-primary fw-bold">Consulta tus Puntos Mascovita</h2>
+            <p class="text-center text-muted mb-4">Ingresa tus datos para ver tu progreso en el Club.</p>
+
+            <div class="card-body">
+                <form (ngSubmit)="onSubmit()" class="mb-4 ">
+                    <div class="mb-3">
+                        <label for="userId" class="form-label">Número de Usuario:</label>
+                        <input type="text" class="form-control p-3" id="userId" [(ngModel)]="userIdInput"
+                            name="userId" placeholder="Ej: user001" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="phoneNumber" class="form-label">Número de Teléfono:</label>
+                        <input type="tel" class="form-control p-3" id="phoneNumber"
+                            [(ngModel)]="phoneNumberInput" name="phoneNumber" placeholder="Ej: 3751121212" required>
+                    </div>
+                    <div class="d-grid gap-2">
+                        <button type="submit" [routerLink]="['../results', userIdInput,phoneNumberInput ]"
+                            class="btn btn-primary btn-lg shadow-sm py-3 px-5 animate__animated animate__pulse">
+                            Ver Mis Puntos
+                        </button>
+                    </div>
+                </form>
+
+                @if (errorMessage) {
+                <div class="alert alert-danger text-center animate__animated animate__shakeX" role="alert">
+                    {{ errorMessage }}
+                </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>

@@ -17,11 +17,11 @@ export class ProductService {
   constructor()
   {
     this.categories = environment.ecomerce.categories ||
-    ["PERROS", "GATOS","AGRO","ACCESORIOS"];
+    ["PERROS", "GATOS","GALLINAS","AGRO","ACCESORIOS"];
     this.brands = environment.ecomerce.brands ||
-    ['SABROSITOS', 'UPPER','PURINA','WHISKAS', 'PEDIGREE',
+    ['SABROSITOS', 'UPPER', 'WHISKAS', 'PEDIGREE',
       'DOG SELECTION','NUTRIBON', 'DOCTOR PERROT', 'CRIANZA', 'DOG CHOW',
-    'CAT CHOW','DOGUI','GANACAN','GRAN CAMPEON','PROTEMIX'];
+    'CAT CHOW','DOGUI','GANACAN','GRAN CAMPEON','PROTEMIX', 'VAGONETA', 'METRIVE'];
     this.defaultDiscount = environment.ecomerce.discount;
   }
 
