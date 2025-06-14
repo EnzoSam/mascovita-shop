@@ -2,12 +2,12 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { User } from '../../models/user.interface';
 import { PointsBalance } from '../../models/pointBalance.interface';
 import { Badge } from '../../models/badge.interface';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { ClubService } from '../../services/club.service';
 
 @Component({
   selector: 'app-points-results',
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './points-results.component.html',
   styleUrl: './points-results.component.css'
 })

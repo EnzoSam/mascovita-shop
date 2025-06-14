@@ -65,7 +65,6 @@ export class ProductService {
     Observable<{ products: Product[], lastDocument: any }> {
     const queryConstraints = [];
 
-    console.log(lastDocument)
     if (filter.categories && filter.categories.length > 0) {
       queryConstraints.push(where('category', 'in', filter.categories));
     }

@@ -1,35 +1,49 @@
-import { Component, EventEmitter, Output } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { RouterLink } from '@angular/router';
+import { Component, } from '@angular/core';
+import { FormsModule, NgForm, AbstractControl, ValidationErrors } from '@angular/forms';
+import { Router } from '@angular/router';
+
+export function requiredValidator(control: AbstractControl): ValidationErrors | null {
+  return control.value && control.value.trim() !== '' ? null : { required: true };
+}
+
+export function argentinaMobileValidator(control: AbstractControl): ValidationErrors | null {
+  const value = control.value ? control.value.trim() : '';
+  const regex = /^([1-9]\d{2,4})(\d{6,8})$/;
+  return regex.test(value) ? null : { argentinaMobile: true };
+}
 
 @Component({
   selector: 'app-points-identification',
-  imports: [FormsModule, RouterLink],
+  imports: [FormsModule],
   templateUrl: './points-identification.component.html',
   styleUrl: './points-identification.component.css'
 })
 export class PointsIdentificationComponent {
- userIdInput: string = '';
+  userIdInput: string = '';
   phoneNumberInput: string = '';
   errorMessage: string | null = null;
 
-  @Output() identifyUser = new EventEmitter<{ userId: string; phoneNumber: string; }>();
+  requiredValidator = requiredValidator;
+  argentinaMobileValidator = argentinaMobileValidator;
 
-  constructor() { }
+  constructor(private _router:Router) { }
 
-  onSubmit(): void {
+  onSubmit(form?: NgForm): void {
     this.errorMessage = null;
     if (!this.userIdInput || !this.phoneNumberInput) {
       this.errorMessage = 'Por favor, ingresa tu número de usuario y teléfono.';
       return;
     }
+    const phoneError = argentinaMobileValidator({ value: this.phoneNumberInput } as AbstractControl);
+    if (phoneError) {
+      this.errorMessage = 'El número de teléfono debe ser un celular argentino válido.';
+      return;
+    }
 
-    console.log(this.userIdInput)
-    console.log(this.phoneNumberInput)
+    this._router.navigate(['/club/results', this.userIdInput, this.phoneNumberInput]);
   }
 
   setErrorMessage(message: string | null): void {
     this.errorMessage = message;
   }
-
 }

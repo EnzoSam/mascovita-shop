@@ -3,12 +3,50 @@
     margin-bottom: 20px;
   }
   
-  .form-check-input:checked + .form-check-label {
-    font-weight: bold;
-    color: #007bff; /* Color azul para elementos seleccionados */
-  }
-  
-  .form-check-label:hover {
-    cursor: pointer;
-    background-color: #f0f0f0; /* Ligero sombreado al pasar el mouse */
-  }
+  .form-check {
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+  padding: 1px 2px;
+  border-radius: 6px;
+  transition: background 0.2s;
+}
+
+.form-check:hover {
+  background: #f5f7fa;
+}
+
+.form-check-input {
+  width: 1.5em;
+  height: 1.5em;
+  margin-right: 16px;
+  accent-color: #007bff;
+  cursor: pointer;
+  border: 2px solid #222 !important;
+}
+
+.form-check-input:focus {
+  outline: none;
+  border-color: #007bff !important;
+  box-shadow: 0 0 0 2px #b3d7ff;
+}
+
+.form-check-input:checked {
+  border-color: #007bff !important;
+}
+
+.form-check-label {
+  font-size: 1.2em;
+  cursor: pointer;
+  user-select: none;
+  transition: color 0.2s;
+  padding-top: 2px;
+  font-weight: 500;
+  color: #222;
+}
+
+.form-check-input:checked + .form-check-label {
+  font-weight: bold;
+  color: #007bff;
+}
+
