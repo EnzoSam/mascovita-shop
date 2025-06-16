@@ -1,5 +1,7 @@
 User-agent: *
 Disallow: /admin/
 Disallow: /cart-resume/
+Disallow: /club/identification
+Disallow: /club/results
 Allow: /
 Sitemap: https://mascovita.com/sitemap.xml

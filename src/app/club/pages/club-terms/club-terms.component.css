@@ -1,0 +1,13 @@
+.card-title {
+  font-size: 1.4em;
+  font-weight: bold;
+}
+.card {
+  border-radius: 1rem;
+}
+ul {
+  margin-bottom: 0;
+}
+h1, h3 {
+  font-family: 'Segoe UI', 'Arial', sans-serif;
+}
