@@ -51,7 +51,15 @@ export class PointsResultsComponent implements OnInit {
               else
               {
                 this.currentError = 'Los datos del usuario son incorrectos.'
+                this.currentUser = undefined;
+                this.currentPointsBalance = undefined;
+                this.currentBadge = undefined;
               }          
+            } else {
+              this.currentError = 'El usuario no está registrado 😑 . Los registros del club se actualizan periodicamente. Si ya estas registrado, vuelve a consultar en otro momento. 😺 ';
+              this.currentUser = undefined;
+              this.currentPointsBalance = undefined;
+              this.currentBadge = undefined;
             }
           }
           );

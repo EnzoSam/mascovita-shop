@@ -24,8 +24,13 @@
       Consultar otro usuario
     </button>
   </div>
-} @else {
-  <div class="alert alert-warning text-center">
+} @else if (currentError) {
+  <div class="alert alert-warning text-center animate__animated animate__fadeInDown" role="alert">
+    <i class="bi bi-emoji-smile text-primary fs-2 mb-2"></i><br>
     {{currentError}}
+  </div>
+} @else {
+  <div class="alert alert-info text-center animate__animated animate__fadeInDown" role="alert">
+    Buscando información del usuario...
   </div>
 }
