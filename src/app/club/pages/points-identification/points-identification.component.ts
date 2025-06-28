@@ -1,6 +1,6 @@
 import { Component, } from '@angular/core';
 import { FormsModule, NgForm, AbstractControl, ValidationErrors } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 
 export function requiredValidator(control: AbstractControl): ValidationErrors | null {
   return control.value && control.value.trim() !== '' ? null : { required: true };
@@ -14,7 +14,7 @@ export function argentinaMobileValidator(control: AbstractControl): ValidationEr
 
 @Component({
   selector: 'app-points-identification',
-  imports: [FormsModule],
+  imports: [FormsModule,RouterLink],
   templateUrl: './points-identification.component.html',
   styleUrl: './points-identification.component.css'
 })

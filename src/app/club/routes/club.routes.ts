@@ -6,7 +6,7 @@ import { ClubTermsComponent } from '../pages/club-terms/club-terms.component';
 export const clubRoutes : Routes = [
     { path: '', redirectTo: 'terms', pathMatch:'full' },
     {path:'terms', component:ClubTermsComponent},
-    { path: 'identification', component:PointsIdentificationComponent },
+    { path: 'consulta', component:PointsIdentificationComponent },
     { path: 'results/:userId/:movil',
        component:PointsResultsComponent,
       providers:[ClubService] },
