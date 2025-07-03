@@ -78,7 +78,7 @@ export class CartService {
   getTotal(cart:Cart) {
     let r = cart.products.reduce((total, item) =>
        total + item.product.discountedPrice * item.quantity, 0);
-    return r;
+    return  Math.round(r * 100) / 100;
   }  
 
   changeQuantity(productiD: number, _quantity:number) {
