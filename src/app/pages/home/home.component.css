@@ -121,3 +121,19 @@
         max-width: 100%;
     }
 }
+
+.category-card {
+    transition: transform 0.2s, box-shadow 0.2s;
+    cursor: pointer;
+}
+.category-card:hover, .category-card:focus {
+    transform: translateY(-8px) scale(1.05);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+    border-color: #198754; /* Bootstrap success color */
+}
+.category-card img {
+    transition: transform 0.2s;
+}
+.category-card:hover img {
+    transform: scale(1.15) rotate(-6deg);
+}

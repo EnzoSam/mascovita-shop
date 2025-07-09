@@ -10,24 +10,60 @@
         </div>
     </section>
 
-    <section class="features-section py-5 bg-light">
+    <!-- Categorías de productos -->
+    <section class="categories-section bg-light">
         <div class="container">
-            <h2 class="section-title text-center mb-5">¿Por qué elegirnos?</h2>
-            <div class="row">
-                <div class="col-md-4 feature-item text-center">
-                    <i class="bi bi-heart-fill text-primary mb-3" style="font-size: 2em;"></i>
-                    <h3>Variedad de productos</h3>
-                    <p>Contamos con diferentes marcas de alimentos nutritivos y deliciosos para cada tipo de mascota.</p>
+            <h2 class="section-title text-center mb-5">Alimentos para cada compañero</h2>
+            <div class="row justify-content-center ps-3 pe-3">
+                <div class="col-6 col-md-4 col-lg-2 mb-4">
+                    <a routerLink="/shop/perros" class="card h-100 text-center text-decoration-none shadow-sm category-card">
+                        <div class="card-body">
+                            <img src="/assets/dog.png" alt="Perros" style="width:48px; height:48px;" class="mb-3">
+                            <h5 class="card-title text-dark">Perros</h5>
+                        </div>
+                    </a>
                 </div>
-                <div class="col-md-4 feature-item text-center">
-                    <i class="bi bi-truck text-success mb-3" style="font-size: 2em;"></i>
-                    <h3>Envío Rápido</h3>
-                    <p>Recibe tus productos cómodamente en casa con nuestro servicio de envíos.</p>
+                <div class="col-6 col-md-4 col-lg-2 mb-4">
+                    <a routerLink="/shop/gatos" class="card h-100 text-center text-decoration-none shadow-sm category-card">
+                        <div class="card-body">
+                            <img src="/assets/cat.png" alt="Gatos" style="width:48px; height:48px;" class="mb-3">
+                            <h5 class="card-title text-dark">Gatos</h5>
+                        </div>
+                    </a>
                 </div>
-                <div class="col-md-4 feature-item text-center">
-                    <i class="bi bi-chat-dots-fill text-info mb-3" style="font-size: 2em;"></i>
-                    <h3>Buena atención</h3>
-                    <p>Atención por propios dueños, con la mejor onda.</p>
+                <div class="col-6 col-md-4 col-lg-2 mb-4">
+                    <a routerLink="/shop/gallinas" class="card h-100 text-center text-decoration-none shadow-sm category-card">
+                        <div class="card-body">
+                            <img src="/assets/hen.png" alt="Gallinas" style="width:48px; height:48px;" class="mb-3">
+                            <h5 class="card-title text-dark">Gallinas</h5>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-6 col-md-4 col-lg-2 mb-4">
+                    <a routerLink="/shop/conejos" class="card h-100 text-center text-decoration-none shadow-sm category-card">
+                        <div class="card-body">
+                            <img src="/assets/rabbit.png" alt="Conejos" style="width:48px; height:48px;" class="mb-3">
+                            <h5 class="card-title text-dark">Conejos</h5>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Club Mascovita -->
+    <section class="club-mascovita-section py-5 bg-white">
+        <div class="container text-center">
+            <div class="row align-items-center justify-content-center">
+                <div class="col-lg-7 mb-4 mb-lg-0">
+                    <h2 class="section-title mb-3">¡Conocé el Club Mascovita!</h2>
+                    <p class="mb-4 fs-5">
+                        Sumate gratis y accedé a beneficios exclusivos para vos y tu mascota. En Mascovita premiamos tu fidelidad, sumá puntos y ganá.
+                    </p>
+                    <a routerLink="/club" class="btn btn-success btn-lg">Quiero ser parte</a>
+                </div>
+                <div class="col-lg-5">
+                    <img src="/assets/club-animals.webp" alt="Club Mascovita" class="img-fluid rounded shadow">
                 </div>
             </div>
         </div>
