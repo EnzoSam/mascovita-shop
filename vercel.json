@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    {
+      "source": "/comunidad(/.*)?",
+      "destination": "https://rescuers-e684f.web.app"
+    }
+  ]
+}
