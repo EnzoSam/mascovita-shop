@@ -1,8 +1,12 @@
 {
   "rewrites": [
     {
-      "source": "/comunidad/(.*)",
-      "destination": "https://rescuers-e684f.web.app/$1"
+      "source": "/comunidad",
+      "destination": "https://rescuers-e684f.web.app/p"
+    },
+    {
+      "source": "/comunidad/:path*",
+      "destination": "https://rescuers-e684f.web.app/:path*"
     }
   ]
 }
