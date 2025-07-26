@@ -57,4 +57,11 @@
     <priority>0.4</priority>
   </url>  
 
+  <url>
+    <loc>https://mascovita.com/comunidad</loc>
+    <lastmod>2025-07-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>    
+
   </urlset>
